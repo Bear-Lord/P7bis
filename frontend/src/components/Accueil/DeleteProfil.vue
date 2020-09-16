@@ -4,9 +4,9 @@
         <p> Êtes-vous sûr.e ?</p>
         <p>En supprimant votre profil, vous effacerez aussi tous vos posts ainsi que vos commentaires.</p>
         <p>{{ msg }}</p>
-        <v-btn text @click="deleteUser">
+        <button text @click="deleteUser">
             Supprimer mon profil
-        </v-btn>
+        </button>
     </div>
 </template>
 <script>

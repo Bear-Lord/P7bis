@@ -8,8 +8,8 @@
             <p>E-mail : {{ dataGet.email }}</p>
         </div>
         <div class="boutons">
-            <v-btn class="ind" @click="component='modify-profil'" title="Modifier profil">Modifier</v-btn>
-            <v-btn class="ind red" @click="component='delete-profil'" title="Supprimer profil">Supprimer</v-btn>
+            <button class="ind" @click="component='modify-profil'" title="Modifier profil">Modifier</button>
+            <button class="ind red" @click="component='delete-profil'" title="Supprimer profil">Supprimer</button>
         </div>
         <div class="auth">
             <component v-bind:is="component"></component>
@@ -37,6 +37,7 @@ export default {
                 email: ""
             },
             valid: true,
+            component:""
         }
     },
     mounted() { 

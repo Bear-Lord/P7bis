@@ -4,7 +4,7 @@
         <h2>Forum</h2>
         <div>
             <div class="bouton">
-                <v-btn class="ind" @click="afficheForm">Créer un post</v-btn>
+                <button class="ind" @click="afficheForm">Créer un post</button>
             </div>
             <div class="message" v-for="(post, index) in allPosts" v-bind:key="index">
                 <h3>{{ post.title }}</h3>
