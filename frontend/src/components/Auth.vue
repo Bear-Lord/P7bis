@@ -2,11 +2,11 @@
     <div id="auth">
         
         <div class="auth">
-            <a href="accueil.html" id="logo"><img src="../assets/logo.png" alt="Logo Groupomania" class=""></a>
+            <a href="accueil.html" id="logo"><img src="../assets/logo.png" alt="Logo Groupomania"></a>
 
             <div class="boutons">
-                <v-btn class="ind" @click="component='signup'">S'inscrire</v-btn>
-                <v-btn class="ind" @click="component='login'">Se connecter</v-btn>
+                <button class="ind" @click="component='signup'">S'inscrire</button>
+                <button class="ind" @click="component='login'">Se connecter</button>
             </div>
         </div>
 
@@ -77,8 +77,9 @@
         text-decoration: none;
         color: black;
         margin-top: 5%;
-        width: 150px ; 
+        width: 250px ; 
         background-color: white;
+        border: 0px;
     }
 
     .auth .boutons .ind:hover{
@@ -103,7 +104,7 @@
         font-size: 18px;
         margin-bottom: 10px;
     }
-    button{
+    .valid_button{
         margin:auto;
         margin-top:10px;
         border-radius: 10px;

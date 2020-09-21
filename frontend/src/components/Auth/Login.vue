@@ -4,7 +4,7 @@
         <form>
             <label for="Email">Email : </label><input type="email" v-model="dataLogin.email" :rules="emailRules" label="Email" autofocus required><br>
             <label for="Mot de passe">Mot de passe : </label><input type="password" v-model="dataLogin.password" :rules="passRules" label="Mot de passe" required><br>
-            <button @click.prevent="sendLogin" type="submit">Se connecter</button>
+            <button @click.prevent="sendLogin" type="submit" class="valid_button">Se connecter</button>
         </form>
         <p v-if="msg">{{message}}</p>
     </div>

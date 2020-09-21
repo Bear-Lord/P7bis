@@ -6,7 +6,7 @@
             <label for="Nom">Nom :</label><input type="text" label="Nom" v-model="dataSignup.lastName" :rules="lastNameRules" required><br>
             <label for="Email">Email :</label><input type="email" label="Email" v-model="dataSignup.email" :rules="emailRules" required><br>
             <label for="Mot de passe">Mot de passe :</label><input error-count="4" type="password" v-model="dataSignup.password" :rules="passRules" label="Mot de passe" required><br>
-            <button @click.prevent="sendSignup" type="submit">S'inscrire</button>
+            <button @click.prevent="sendSignup" type="submit" class="valid_button">S'inscrire</button>
         </form>
         <p v-if="msg">{{message}}</p>
     </div>

@@ -7,9 +7,42 @@
                 <button class="ind" @click="afficheForm">Créer un post</button>
             </div>
             <div class="message" v-for="(post, index) in allPosts" v-bind:key="index">
+                <div v-if="post.userId == userId">
+                    <button class="ind2" @click="goDialogUpPost(post.title, post.content, post.id)">Editer</button>
+                    <button class="ind2 red" @click="deletePost(post.id)">Supprimer</button>
+                </div>
                 <h3>{{ post.title }}</h3>
+                
                 <div>Par {{ post.firstName }} {{ post.lastName }}, le {{ post.date }} à {{ post.time }}</div>
-                <div> {{ post.content }}</div>
+                <div class="content"> {{ post.content }}</div>
+                <div><button @click="afficheCom(post.id)" class="ind2">Voir les commentaires</button></div>
+                <div class="post_edit" v-if="dialogUpPost">
+                    <h4>Modifier un post</h4>
+                    <form>
+                        <label for="Titre">Titre : </label><input label="Titre" type="text" v-model="dataPost.title" :rules="titleRules" autofocus required><br>
+                        <label for="Message">Message : </label><br><textarea v-model="dataPost.content" :rules="contentRules" label="Message" required></textarea><br>
+                        <button @click="dialogUpPost=false" type="submit" class="ind2">Annuler</button>
+                        <button @click="updatePost()" type="submit" class="ind2">Poster</button>
+                    </form>
+                </div>
+                <div class="margin_top" v-if="postId == post.id && afficheCm">
+                    <div v-for="(comment, index) in allComments" v-bind:key="index">
+                        <div>Par {{ comment.firstName }} {{ comment.lastName }}, le {{ comment.date }}</div>
+                        <div class="content"> {{ comment.comContent }}</div>
+                    </div>
+                </div>
+                <div v-if="!afficheFrmCm">
+                     <button @click="afficheFormCom(post.id)" type="submit" class="ind2">Commenter</button>
+                </div>
+
+                <div class="margin_top" v-if="afficheFrmCm && postId == post.id">
+                    <form v-if="form">
+                        <label for="Message">Message : </label><br><textarea v-model="dataCom.content" :rules="contentRules" label="Message" required></textarea><br>
+                        <button @click="sendCom(post.id)" type="submit" class="ind2">Poster</button>
+                        <button @click="afficheFrmCm=false" type="submit" class="ind2">Annuler</button>
+                    </form>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -27,6 +60,8 @@ export default {
             userId: "",
             admin: "",
             afficheFrmCm: false,
+            affichCm: false,
+            dialogUpPost: false,
             allPosts: [],
             allLikes: [],
             allComments: [],
@@ -71,6 +106,7 @@ export default {
     },
     methods: {
         afficheCom(pId){
+            this.afficheCm = true;
             this.postId = pId;
             this.afficheFrmCm = false;
             axios.get("http://localhost:3000/api/posts/" + pId + "/comments", {headers: {Authorization: 'Bearer ' + localStorage.token}})
@@ -171,8 +207,10 @@ export default {
         afficheForm(){
             this.$router.push('/Accueil/forum/Post')
         },
-        afficheFormCom(){
-            this.afficheFrmCm = true
+        afficheFormCom(pId){
+            this.afficheCm = false;
+            this.postId = pId;
+            this.afficheFrmCm = true;
         },
 
         likePost(postId, nbLikes){
@@ -245,6 +283,25 @@ export default {
         margin-bottom: 40px;
     }
 
+    .ind2{
+        text-align: center;
+        display: inline-block;
+        padding: 10px;
+        list-style-type: none;
+        font-size: 18px;
+        text-decoration: none;
+        color: white;
+        background-color: black;
+        margin-top: 20px;
+        min-width: 150px ; 
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .ind2.red{
+        background-color: red;
+    }
+
     .bouton .ind{
         text-align: center;
         display: inline-block;
@@ -255,7 +312,7 @@ export default {
         color: white;
         background-color: black;
         margin-top: 40px;
-        width: 150px ; 
+        min-width: 150px ; 
         border-radius: 5px;
         cursor: pointer;
     }
@@ -271,5 +328,21 @@ export default {
         padding: 20px;
         border-radius: 10px;
         margin-bottom: 20px;
-}
+    }
+
+    .post_edit{
+        border-radius: 10px;
+        padding: 20px;
+        margin-top:15px;
+        background-color: #DDD;
+    }
+
+    .message .content{
+        font-size: 20px;
+        padding: 15px 0;
+    }
+
+    .margin_top{
+        margin:15px;
+    }
 </style>

@@ -4,18 +4,18 @@
             <div class="auth">
                 <a href="accueil.html" id="logo"><img src="../../assets/logo.png" alt="Logo Groupomania" class=""></a>
                 <ul v-for="item in items" :key="item.title">
-                    <li class="ind">
+                    <li class="menu_li">
                         <router-link :to=item.link>{{ item.title }}</router-link>
                     </li>
                 </ul>
                 <ul v-if="this.modo==1">
-                    <li @click="moderation" class="ind">
+                    <li @click="moderation" class="menu_li">
                         Modération
                     </li>
                 </ul>
 
                 <ul>
-                    <li @click="logout" class="ind">
+                    <li @click="logout" class="menu_li">
                         Se déconnecter
                     </li>
                 </ul>
@@ -65,19 +65,18 @@ export default {
         text-decoration: underline;  
         color: #FD2D01;   
     }
-    .lien {
-        cursor: pointer;
-    }
-    .lien:hover {
+    .auth .menu_li:hover {
         color: #F13E18!important;
-        text-decoration: underline;
+        text-decoration: none;
     }
-    .auth .ind{
+    .auth .menu_li{
         text-align: right;
         display: inline-block;
         padding: 15px;
         list-style-type: none;
         font-size: 25px;
-        text-decoration: none;     
+        text-decoration: none;  
+        margin-top: 25px;  
+         cursor: pointer; 
     }
 </style>

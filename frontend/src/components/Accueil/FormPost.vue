@@ -6,7 +6,7 @@
             <form>
                 <label for="Titre">Titre : </label><input label="Titre" type="text" v-model="dataPost.title" :rules="titleRules" autofocus required><br>
                 <label for="Message">Message : </label><br><textarea v-model="dataPost.content" :rules="contentRules" label="Message" required></textarea><br>
-                <button @click.prevent="sendPost" type="submit">Poster</button>
+                <button @click.prevent="sendPost" type="submit" class="ind">Poster</button>
             </form>
         </div>
     </div>
@@ -85,6 +85,6 @@ export default {
     }
     textarea{
         height: 200px;
-        width: 100%;
+        width: 95%;
     }
 </style>

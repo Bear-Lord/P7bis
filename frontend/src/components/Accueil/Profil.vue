@@ -91,7 +91,7 @@ export default {
         margin-bottom: 40px;
     }
 
-    .boutons .ind{
+    .ind{
         text-align: center;
         display: inline-block;
         padding: 15px;
@@ -101,16 +101,16 @@ export default {
         color: white;
         background-color: black;
         margin-top: 40px;
-        width: 150px ; 
+        min-width: 150px ; 
         border-radius: 5px;
         cursor: pointer;
     }
-    .boutons .ind.red{
+    .ind.red{
         background-color: red;
         margin-left: 20px;
     }
 
-    .boutons .ind:hover{
+    .ind:hover{
         color: yellow;
     }
 
