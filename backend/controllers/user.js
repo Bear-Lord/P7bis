@@ -51,7 +51,7 @@ exports.signup = (req, res, next) => {
                     res.status(400).json({error})
                 })
         })
-        .catch(error => res.status(500).json(error:"Erreur 500 !!!"));
+        .catch(error => res.status(500).json(error));
     }
 };
 
