@@ -19,14 +19,14 @@
                 <div class="post_edit" v-if="dialogUpPost">
                     <h4>Modifier un post</h4>
                     <form>
-                        <label for="Titre">Titre : </label><input label="Titre" type="text" v-model="dataPost.title" :rules="titleRules" autofocus required><br>
-                        <label for="Message">Message : </label><br><textarea v-model="dataPost.content" :rules="contentRules" label="Message" required></textarea><br>
+                        <label for="Titre">Titre : </label><input label="Titre" type="text" v-model="dataPost.title" autofocus required><br>
+                        <label for="Message">Message : </label><br><textarea v-model="dataPost.content" label="Message" required></textarea><br>
                         <button @click="dialogUpPost=false" type="submit" class="ind2">Annuler</button>
                         <button @click="updatePost()" type="submit" class="ind2">Poster</button>
                     </form>
                 </div>
                 <div class="margin_top" v-if="postId == post.id && afficheCm">
-                    <div v-for="(comment, index) in allComments" v-bind:key="index">
+                    <div class="post_edit" v-for="(comment, index) in allComments" v-bind:key="index">
                         <div>Par {{ comment.firstName }} {{ comment.lastName }}, le {{ comment.date }}</div>
                         <div class="content"> {{ comment.comContent }}</div>
                     </div>
@@ -60,7 +60,7 @@ export default {
             userId: "",
             admin: "",
             afficheFrmCm: false,
-            affichCm: false,
+            afficheCm: false,
             dialogUpPost: false,
             allPosts: [],
             allLikes: [],
@@ -115,7 +115,7 @@ export default {
                     this.allComments = com;
                 })
                 .catch(error => {
-                console.log(error);
+                    console.log(error);
                 });
         },
         sendCom(pId){
@@ -146,6 +146,7 @@ export default {
                     console.log(error);    
                 })
         },
+        /*
         deleteCom(cId){
             axios.delete("http://localhost:3000/api/posts/comments/" + cId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
@@ -157,6 +158,7 @@ export default {
                     console.log(error);
                 })
         },
+        */
         goDialogUpPost(postTitle, postContent, postId){
             this.dataPost.title = postTitle;
             this.dataPost.content = postContent;
@@ -212,7 +214,7 @@ export default {
             this.postId = pId;
             this.afficheFrmCm = true;
         },
-
+        /*
         likePost(postId, nbLikes){
             this.allLikes.forEach(element => {
                 if(element.postId == postId && element.userId == localStorage.userId){
@@ -238,6 +240,7 @@ export default {
                     this.dataLike.liked = false;
                 })
         },
+        */
     },
     components: {
         "top-header": TopHeader, 
@@ -252,6 +255,7 @@ export default {
             .catch(error => {
             console.log(error); 
             });
+        //Likes non implémentés
         axios.get("http://localhost:3000/api/posts/likes", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response =>{
                 let likes = JSON.parse(response.data);

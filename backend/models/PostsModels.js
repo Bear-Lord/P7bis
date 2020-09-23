@@ -5,7 +5,7 @@ class PostsModels {
     constructor() {
     }
     
-
+    //Récupère tous les posts
     getAllPosts(){
         let sql = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(DATE(posts.date), '%d/%m/%Y') AS date, TIME(posts.date) AS time, posts.likes, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.date DESC";
         return new Promise((resolve) =>{
@@ -15,6 +15,8 @@ class PostsModels {
             });
         })
     }
+
+    //Ajoute un post
     createPost(sqlInserts){
         let sql = 'INSERT INTO posts VALUES(NULL, ?, ?, ?, NOW(), 0)';
         sql = mysql.format(sql, sqlInserts);
@@ -25,6 +27,8 @@ class PostsModels {
             })       
         })
     }
+
+    //Modifie un post s'il existe
     updatePost(sqlInserts1, sqlInserts2){
         let sql1 = 'SELECT * FROM posts where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
@@ -44,6 +48,8 @@ class PostsModels {
             })
         });
     }
+
+    //Supprime un post s'il existe
     deletePost(sqlInserts1, sqlInserts2){
         let sql1 = 'SELECT * FROM posts where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
@@ -65,7 +71,7 @@ class PostsModels {
         })
     }
 
-
+    //Récupère les commentaires d'un post
     getComments(sqlInserts){
         let sql = "SELECT comments.comContent, DATE_FORMAT(comments.date, '%d/%m/%Y à %H:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id WHERE postId = ? ORDER BY date";
         sql = mysql.format(sql, sqlInserts);
@@ -77,6 +83,8 @@ class PostsModels {
         
         })
     }
+
+    //ajouter un commentaire
     createComment(sqlInserts){
         let sql = 'INSERT INTO comments VALUES(NULL, ?, ?, NOW(), ?)';
         sql = mysql.format(sql, sqlInserts);
@@ -87,6 +95,8 @@ class PostsModels {
             })
         })
     }
+
+    //Modifier un commentaire
     updateComment(sqlInserts1, sqlInserts2){
         let sql1 = 'SELECT * FROM comments where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
@@ -106,6 +116,8 @@ class PostsModels {
             })
         });
     }
+
+    //Supprimer un commentaire
     deleteComment(sqlInserts1, sqlInserts2){
         let sql1 = 'SELECT * FROM comments where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
@@ -127,7 +139,7 @@ class PostsModels {
         })
     }
 
-    
+    //Récupérer tous les likes (bonus)
     getAllLikes(){
         let sql = 'SELECT * FROM likes';
         return new Promise((resolve) =>{
@@ -137,6 +149,8 @@ class PostsModels {
             });
         })
     }
+
+    //Ajouter un like (bonus)
     postLike(sqlInserts1, sqlInserts2, liked){
         let sql1 = 'INSERT INTO likes VALUES (NULL, ?, ?)'; 
         sql1 = mysql.format(sql1, sqlInserts1);

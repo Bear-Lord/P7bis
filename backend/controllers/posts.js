@@ -5,13 +5,15 @@ const PostsModels = require ('../Models/PostsModels.js')
 
 let postsModels = new PostsModels();
 
-
+//Récupère tous les posts
 exports.getAllPosts = (req, res, next) => {
     postsModels.getAllPosts()
         .then((response) => {
             res.status(200).json(JSON.stringify(response));
         });
 }
+
+//Créer un post
 exports.createPost = (req, res, next) => { 
     let title = req.body.title;
     let userId = req.body.userId;
@@ -22,6 +24,8 @@ exports.createPost = (req, res, next) => {
             res.status(201).json(JSON.stringify(response));
         })
 }
+
+//Modifier un post
 exports.updatePost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -40,6 +44,8 @@ exports.updatePost = (req, res, next) => {
             res.status(400).json(JSON.stringify(error));
         })
 }
+
+//Supprimer le post
 exports.deletePost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -57,7 +63,7 @@ exports.deletePost = (req, res, next) => {
         })
 }
 
-
+//Récupère les commentaires d'un post
 exports.getComments = (req, res, next) => {
     let postId = req.params.id;
     let sqlInserts = [postId];
@@ -66,6 +72,8 @@ exports.getComments = (req, res, next) => {
             res.status(200).json(JSON.stringify(response));
         })
 }
+
+//Ajoute un commentaire
 exports.createComment = (req, res, next) => { 
     let postId = req.params.id;
     let userId = req.body.userId;
@@ -77,6 +85,7 @@ exports.createComment = (req, res, next) => {
         })
 }
 
+//Modifier un commentaire
 exports.updateComment = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -94,6 +103,8 @@ exports.updateComment = (req, res, next) => {
             res.status(400).json(JSON.stringify(error));
         })
 }
+
+//Supprimer un commentaire
 exports.deleteComment = (req, res, next) => {
     let commentId = req.params.id;
     let sqlInserts = [commentId];
@@ -102,6 +113,8 @@ exports.deleteComment = (req, res, next) => {
             res.status(200).json(JSON.stringify(response));
         })
 }
+
+//Supprime les commentaires d'un message supprimé
 exports.deleteComment = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -119,13 +132,15 @@ exports.deleteComment = (req, res, next) => {
         })
 }
 
-
+//Récupérer tous les likes (bonus)
 exports.getAllLikes = (req, res, next) =>{
      postsModels.getAllLikes()
         .then((response) =>{
             res.status(200).json(JSON.stringify(response));
         })
 }
+
+//ajouter un like (bonus)
 exports.postLike = (req, res, next) => {
     let userId = req.body.userId;
     let nbLikes = req.body.nbLikes;

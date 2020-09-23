@@ -63,7 +63,7 @@ export default {
                 console.log(error);
                 this.message = error;
                 this.msg = true; 
-                });
+            });
         }
     }
 }

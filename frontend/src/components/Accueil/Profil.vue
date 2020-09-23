@@ -113,10 +113,11 @@ export default {
     .ind:hover{
         color: yellow;
     }
-
-@media screen and (min-width: 200px) and (max-width: 640px) {
-  #profil {
-    padding-left: 10%;
-  }
+@media screen and (max-width: 740px) {
+    .ind, .ind.red{
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+    }
 }
 </style>

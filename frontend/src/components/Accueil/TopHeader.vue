@@ -3,23 +3,25 @@
         <nav>
             <div class="auth">
                 <a href="accueil.html" id="logo"><img src="../../assets/logo.png" alt="Logo Groupomania" class=""></a>
-                <ul v-for="item in items" :key="item.title">
-                    <li class="menu_li">
-                        <router-link :to=item.link>{{ item.title }}</router-link>
-                    </li>
-                </ul>
-                <ul v-if="this.modo==1">
-                    <li @click="moderation" class="menu_li">
-                        Modération
-                    </li>
-                </ul>
+                <div class="boutons flex">
+                    <ul v-for="item in items" :key="item.title">
+                        <li class="menu_li">
+                            <router-link :to=item.link>{{ item.title }}</router-link>
+                        </li>
+                    </ul>
 
-                <ul>
-                    <li @click="logout" class="menu_li">
-                        Se déconnecter
-                    </li>
-                </ul>
-                
+                    <ul v-if="this.modo==1">
+                        <li @click="moderation" class="menu_li">
+                            Modération
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li @click="logout" class="menu_li">
+                            Se déconnecter
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
@@ -78,5 +80,37 @@ export default {
         text-decoration: none;  
         margin-top: 25px;  
          cursor: pointer; 
+    }
+
+    @media screen and (max-width: 1500px) {
+        .auth .boutons li{
+            width: auto;
+            margin-top: 0;
+            text-align: left;
+           
+            padding: 10px;
+            min-width: auto;
+        }
+    }
+
+    @media screen and (max-width: 740px) {
+        h2{
+            margin-top:20px !important;
+            margin-bottom: 35px !important;
+        }
+
+        .auth .boutons ul{
+            margin:0;
+            padding:0;
+        }
+
+        .auth .boutons li{
+            font-size: 18px;
+        }
+
+        .auth .boutons{
+            flex-direction: column;
+        }
+
     }
 </style>

@@ -1,8 +1,6 @@
-# Projet n°7 OpenClassrooms
+# Projet 7 - Groupomania
 
-## Création d'un réseau social d'entreprise pour Groupomania
-
-Télécharger le repository et suivez les instructions ci-après pour installer ce projet en local
+Télécharger le repository et suivez les instructions suivantes pour installer le projet en local
 
 ## prérequis
 
@@ -12,29 +10,24 @@ Télécharger le repository et suivez les instructions ci-après pour installer 
 
 ## Base de données MySQL
 
-* Ouvrez votre terminal
-* Connectez-vous à MySQL : `mysql -h localhost -u root -p`
-* Tapez votre mot de passe 
-* Créez la base de données : `CREATE DATABASE groupomania_database CHARACTER SET 'utf8';`
-* Utilisez la base de données créée : `USE groupomania_database`
-* Importez le fichier groupomania_database.sql : `SOURCE groupomania_database.sql;`
-* Dans le dossier backend, allez dans le fichier connectdb.js et renseignez votre mot de passe dans password:'xxxxxx'
+* Démarrez WAMP
+* Allez sur PHPmyAdmin
+* Cliquez sur Importer et importez le fichier groupomania_database.sql
+* Dans le dossier backend, vous pouvez modifier l'identifiant et le mot de passe dans le fichier connectdb.js s'il est différent de celui de base sur WAMP
 
 ## Installation et démarrage du Backend
 
-* Ouvrez votre terminal
-* Allez dans le dossier backend : `cd groupomania-master/backend` 
+* Ouvrez votre terminal dans le dossier backend
 * Installez toutes les dépendances du projet : `npm install`
-* Démarrez le serveur Node.js : `nodemon server`
+* Démarrez le serveur Node.js : `node server`
 
 ## Installation et démarrage du Frontend
 
-* Ouvrez votre terminal
-* Allez dans le dossier frontend : `cd groupomania-master/frontend` 
+* Ouvrez votre terminal dans le dossier frontend
 * Installez toutes les dépendances du projet : `npm install`
 * Démarrez l'application : `npm run serve`
 
-## Testez l'application
+## Démarrer l'application
 * Ouvrez votre navigateur et allez sur : `http://localhost:8080/`
 
 

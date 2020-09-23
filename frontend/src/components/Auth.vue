@@ -2,11 +2,12 @@
     <div id="auth">
         
         <div class="auth">
-            <a href="accueil.html" id="logo"><img src="../assets/logo.png" alt="Logo Groupomania"></a>
-
+            <div id="logo">
+                <a href="accueil.html"><img src="../assets/logo.png" alt="Logo Groupomania"></a>
+            </div>
             <div class="boutons">
-                <button class="ind" @click="component='signup'">S'inscrire</button>
-                <button class="ind" @click="component='login'">Se connecter</button>
+                <button class="nav_button" @click="component='signup'">S'inscrire</button>
+                <button class="nav_button" @click="component='login'">Se connecter</button>
             </div>
         </div>
 
@@ -61,14 +62,17 @@
     
     .auth .boutons{
         text-align: right;
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
         align-items: center;
         margin-bottom: 2%;
     }
 
-    .auth .boutons .ind{
+    .boutons.flex{
+         display: flex;
+        flex-direction: row;
+        justify-content: right;
+    }
+
+    .auth .boutons .nav_button{
         text-align: right;
         display: inline-block;
         padding: 15px;
@@ -82,7 +86,7 @@
         border: 0px;
     }
 
-    .auth .boutons .ind:hover{
+    .auth .boutons .nav_button:hover{
         color: #FD2D01;
     }
 
@@ -113,5 +117,43 @@
         padding: 10px;
         font-size: 20px;
     }
+
+    @media screen and (max-width: 1500px) {
+        .auth{
+            flex-direction: column;
+        }
+
+        #logo{
+            width:95%;
+        }
+
+        #logo img{
+            width:100%;
+        }
+
+        .auth .boutons{
+            width:100%;
+        }
+
+        .auth .boutons .nav_button{
+            width: auto;
+            margin-top: 0;
+            text-align: left;
+           
+            padding: 10px;
+            min-width: auto;
+        }
+    }
     
+    @media screen and (max-width: 740px) {
+
+        .cadre{
+            width: calc(90% - 40px) !important;
+        }
+
+        .auth .boutons .nav_button{
+            font-size: 18px;
+        }
+
+    }
 </style>

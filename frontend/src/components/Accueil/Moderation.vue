@@ -189,4 +189,16 @@ h1, h2{
     .margin_top{
         margin:15px;
     }
+
+@media screen and (max-width: 740px) {
+    .moderation{
+        width: 100%;
+    }
+
+    .ind2{
+        margin: auto;
+        display: block;
+        margin-top: 10px;
+    }
+}
 </style>

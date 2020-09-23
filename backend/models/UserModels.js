@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 class UserModels {
     constructor() {
     }
+    //Ajout d'un utilisateur
     signup(sqlInserts){
         let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?, NULL)';
         sql = mysql.format(sql, sqlInserts);
@@ -16,6 +17,8 @@ class UserModels {
             })
         })
     }
+
+    //Chercher un utilisateur en fonction de son email et de son mot de passe. S'il est trouvé, on le connecte
     login(sqlInserts, password){
         let sql = 'SELECT * FROM users WHERE email = ?';
         sql = mysql.format(sql, sqlInserts);
@@ -46,6 +49,8 @@ class UserModels {
         
         })
     }
+
+    //Afficher les infos d'un utilisateur
     seeMyProfile(sqlInserts){
         let sql = 'SELECT firstName, lastName, email FROM users WHERE id = ?';
         sql = mysql.format(sql,sqlInserts);
@@ -58,6 +63,8 @@ class UserModels {
         })
     
     }
+
+    //Modifier les infos d'un utilisateur
     updateUser(sqlInserts){
         let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ? WHERE id = ?';
         sql = mysql.format(sql,sqlInserts);
@@ -69,6 +76,8 @@ class UserModels {
 
         })
     }
+
+    //Supprimer un utilisateur
     deleteUser(sqlInserts){
         let sql = 'DELETE FROM users WHERE id = ?'; 
         sql = mysql.format(sql,sqlInserts);

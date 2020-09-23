@@ -7,6 +7,7 @@ class ModModels {
     constructor() {
     }
 
+    //Cherche tous les posts triés du plus récent au plus ancien
     getAllPosts(){
         let sql = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(posts.date, '%d/%m/%Y à %H:%i:%s') AS date, posts.likes, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.date DESC";
         return new Promise((resolve) =>{
@@ -16,6 +17,8 @@ class ModModels {
             });
         })
     };
+
+    //supprime un post
     deletePost(sqlInserts){
         let sql = 'DELETE FROM posts WHERE id = ?';
         sql = mysql.format(sql, sqlInserts);
@@ -26,6 +29,8 @@ class ModModels {
             })
         })
     };
+
+    //Cherche tous les commentaires du plus récent au plus ancien
     getAllComments(){
         let sql = "SELECT comments.comContent, DATE_FORMAT(comments.date, '%d/%m/%Y à %H:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id ORDER BY date DESC";
         return new Promise((resolve) =>{
@@ -36,6 +41,8 @@ class ModModels {
         
         })
     };
+
+    //Supprime un commentaire
     deleteComment(sqlInserts){
         let sql = 'DELETE FROM comments WHERE id = ?';
         sql = mysql.format(sql, sqlInserts);
