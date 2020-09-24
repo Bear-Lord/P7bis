@@ -20,14 +20,14 @@ exports.signup = (req, res, next) => {
     let lastName = req.body.lastName.trim();
 
     //On vérifie que les champs nom, prénom et email ne sont pas vides
-    if(first_name == null || last_name == null || email == null || password == null){
+    if(firstName == null || lastName == null || email == null || password == null){
         res.status(400).json({
             error: "Paramètres manquants."
         });
     }
 
     //On vérifie que le nom, prénom et email sont bien formatés
-    else if(!checkInputs.validEmail(email) || !checkInputs.validName(first_name) || !checkInputs.validName(last_name)){
+    else if(!checkInputs.validEmail(email) || !checkInputs.validName(firstName) || !checkInputs.validName(lastName)){
         res.status(400).json({
             error: "Paramètres incorrectement syntaxés."
         });
