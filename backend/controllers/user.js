@@ -39,19 +39,18 @@ exports.signup = (req, res, next) => {
             error: "Le mot de passe entré n'est pas correctement formaté."
         });
     } else {
-        bcrypt.hash(password, 10)
-        .then (hash => {
-            let sqlInserts = [lastName, firstName, email, hash];
-            userModels.signup(sqlInserts)
-                .then((response) =>{
-                    res.status(201).json(JSON.stringify(response))
-                })
-                .catch((error) =>{
-                    console.error(error);
-                    res.status(400).json({error})
-                })
-        })
-        .catch(error => res.status(500).json(error));
+        let hash = bcrypt.hashSync(password, 10);
+
+        let sqlInserts = [lastName, firstName, email, hash];
+        userModels.signup(sqlInserts)
+            .then((response) =>{
+                res.status(201).json(JSON.stringify(response))
+             })
+            .catch((error) =>{
+                console.error(error);
+                res.status(400).json({error})
+            })
+
     }
 };
 
