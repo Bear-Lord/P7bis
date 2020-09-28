@@ -11,9 +11,9 @@
             </div>
         </div>
 
-        <div class="auth">
+        <div id="main_content" class="auth">
             <component v-bind:is="component"></component>
-        </div>   
+        </div>  
         
     </div>
 </template>
@@ -48,6 +48,13 @@
   #logo, .auth .boutons{
     width:50%;
     display: inline-block;
+  }
+
+  #main_content{
+        background-image: url("../assets/work.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        min-height:500px;
   }
 
   .auth img{
@@ -96,6 +103,7 @@
         padding: 20px;
         line-height: 1.5em;
         font-size: 18px;
+        background-color: white;
     }
     h2{
         font-size: 30px;
@@ -153,6 +161,13 @@
 
         .auth .boutons .nav_button{
             font-size: 18px;
+        }
+
+        #main_content{
+            background-image: url("../assets/work.jpg");
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+            min-height:500px;
         }
 
     }

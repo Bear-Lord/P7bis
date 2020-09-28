@@ -3,6 +3,7 @@
         <top-header/>
         <div class="cadre">
             <h2>Nouveau post</h2>
+            <div v-if="msg"><p>{{message}}</p></div>
             <form>
                 <label for="Titre">Titre : </label><input label="Titre" type="text" v-model="dataPost.title" :rules="titleRules" autofocus required><br>
                 <label for="Message">Message : </label><br><textarea v-model="dataPost.content" :rules="contentRules" label="Message" required></textarea><br>
@@ -41,21 +42,27 @@ export default {
     },
     methods: {
         sendPost(){
-            this.dataPostS = JSON.stringify(this.dataPost);
-            axios.post("http://localhost:3000/api/posts/", this.dataPostS, {headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.token}})
+            if(this.dataPost.title.trim() == "" || this.dataPost.content.trim() ==""){
+                console.log("Contenu vide");
+                this.message = "Contenu vide";
+                this.msg = true;
+            } else {
+                this.dataPostS = JSON.stringify(this.dataPost);
+                axios.post("http://localhost:3000/api/posts/", this.dataPostS, {headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     this.message = rep.message;
                     this.msg = true;
                     this.form = false;
-                    this.$router.push('/Accueil/Forum')
+                    this.$router.push('/Accueil/Forum');
                     
                 })
                 .catch(error => {
                     console.log(error); 
                     this.message = error;
-                    this.msg = true
+                    this.msg = true;
                 });
+            }
         },
     },
     components: {
