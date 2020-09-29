@@ -35,7 +35,7 @@ export default {
             passRules: [
                 v => !!v || 'Renseignez votre mot de passe'
             ],
-           dataUp: {
+            dataUp: {
                 firstName: "",
                 lastName: "",
                 email: "",

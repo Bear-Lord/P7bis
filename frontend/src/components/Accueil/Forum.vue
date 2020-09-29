@@ -256,6 +256,7 @@ export default {
             console.log(error); 
             });
         //Likes non implémentés
+        /*
         axios.get("http://localhost:3000/api/posts/likes", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response =>{
                 let likes = JSON.parse(response.data);
@@ -264,6 +265,7 @@ export default {
             .catch(error => {
                 console.log(error)
             }); 
+            */
     },
 }
 </script>

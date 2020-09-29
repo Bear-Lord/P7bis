@@ -36,6 +36,7 @@ export default {
                 lastName: "",
                 email: ""
             },
+
             valid: true,
             component:""
         }
@@ -47,9 +48,7 @@ export default {
                 this.dataGet.email = profil[0].email;
                 this.dataGet.firstName = profil[0].firstName;
                 this.dataGet.lastName = profil[0].lastName;
-                this.dataUp.email = profil[0].email;
-                this.dataUp.firstName = profil[0].firstName;
-                this.dataUp.lastName = profil[0].lastName;
+
             })
             .catch(error => {
                 console.log(error);
